@@ -24,14 +24,15 @@ class ForexDate(Base):
     rates = relationship(
         "ForexRate", back_populates="forex_date", cascade="all, delete-orphan"
     )
+    __table_args__ = (UniqueConstraint("date"),)
 
 
 class ForexRate(Base):
     __tablename__ = "forex_rates"
 
     id = Column(Integer, primary_key=True)
-    forex_rate_id = Column(Integer, ForeignKey("forex_dates.id"), nullable=False)
-    currency_name = Column(String, nullable=False)
+    forex_date_id = Column(Integer, ForeignKey("forex_dates.id"), nullable=False)
+    currency_name = Column(String(30), nullable=False)
     currency_iso = Column(String(3), nullable=False)  # ISO3 code
     currency_unit = Column(Integer, nullable=False)
     buy_rate = Column(Float, nullable=True)
