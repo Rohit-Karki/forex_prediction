@@ -16,7 +16,7 @@ def safe_parse_date(date_str):
     return None
 
 
-def get_yearly_date_ranges(start_year=2022, end_year=None):
+def get_yearly_date_ranges(start_year=2014, end_year=2016):
     if end_year is None:
         end_year = date.today().year + 1  # Include current year
     ranges = []
